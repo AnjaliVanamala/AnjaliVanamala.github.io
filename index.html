@@ -129,4 +129,193 @@
       background: white;
       border-radius: 16px;
       overflow: hidden;
-      box-s
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transform-style: preserve-3d;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px) rotateX(5deg) rotateY(3deg);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .project-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .project-card .content {
+      padding: 1rem;
+    }
+
+    .project-card h3 {
+      margin-top: 0;
+      color: #1e3a8a;
+      font-size: 1.2rem;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #1e3a8a;
+      color: #dbeafe;
+      font-size: 0.9rem;
+      margin-top: 4rem;
+    }
+
+    footer a {
+      color: #dbeafe;
+      text-decoration: underline;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    /* --- ANIMATIONS --- */
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    /* --- TYPEWRITER EFFECT --- */
+    .typewriter {
+      overflow: hidden;
+      border-right: 3px solid #fff;
+      white-space: nowrap;
+      margin: 0 auto;
+      animation: typing 3s steps(30, end), blink 0.7s step-end infinite;
+      width: fit-content;
+    }
+
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
+
+    @keyframes blink {
+      50% {
+        border-color: transparent;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <h1 class="typewriter">Anjali Vanamala</h1>
+    <p>Software Engineering Student</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#data-projects">Data Projects</a>
+      <a href="#software-projects">Software Projects</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="about">
+      <p>
+        Hi! I'm <strong>Anjali Vanamala</strong>, a passionate software engineering student 
+        interested in building data-driven systems and developing clean, efficient software.
+        I enjoy exploring the intersection of data engineering, machine learning, and 
+        application development to solve real-world problems.
+      </p>
+    </div>
+  </section>
+
+  <section id="data-projects">
+    <h2>Data Engineering & Science Projects</h2>
+    <div class="projects">
+      <a href="#" class="project-card">
+        <img src="https://via.placeholder.com/400x200.png?text=FairGNN+Fairness+Model" alt="FairGNN Project">
+        <div class="content">
+          <h3>FairGNN Fairness Model</h3>
+          <p>Exploring fairness in graph neural networks using the Pokec dataset.</p>
+        </div>
+      </a>
+      <a href="#" class="project-card">
+        <img src="https://via.placeholder.com/400x200.png?text=Bayesian+GNN+Attack" alt="Bayesian GNN">
+        <div class="content">
+          <h3>Bayesian GNN Poisoning Attack</h3>
+          <p>Designed fairness-aware poisoning attacks with uncertainty estimation.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section id="software-projects">
+    <h2>Software Engineering Projects</h2>
+    <div class="projects">
+      <a href="#" class="project-card">
+        <img src="https://via.placeholder.com/400x200.png?text=Music+Notation+Editor" alt="Music Editor">
+        <div class="content">
+          <h3>Music Notation Editor</h3>
+          <p>Interactive web app using VexFlow and Vue for creating musical compositions.</p>
+        </div>
+      </a>
+      <a href="#" class="project-card">
+        <img src="https://via.placeholder.com/400x200.png?text=OCR+Pipeline" alt="OCR Pipeline">
+        <div class="content">
+          <h3>OCR Pipeline</h3>
+          <p>Built an OCR pipeline using CRNN for text extraction from images.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Anjali Vanamala | <a href="https://github.com/anjalivanamala">GitHub</a></p>
+  </footer>
+
+  <script>
+    // Shrinking header
+    const header = document.getElementById("header");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 60) header.classList.add("shrink");
+      else header.classList.remove("shrink");
+    });
+
+    // Fade-in sections on scroll
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    sections.forEach(section => observer.observe(section));
+  </script>
+</body>
+</html>
