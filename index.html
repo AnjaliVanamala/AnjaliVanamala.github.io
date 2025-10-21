@@ -3,149 +3,153 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anjali Vanamala | Software Engineering Student</title>
+  <title>Anjali Vanamala</title>
   <style>
-    /* --- RESET & BASE --- */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
+    :root {
+      --bg: #f9fafb;
+      --text: #331f37;
+      --primary: #5a4769;
+      --accent: #a78b9f;
+      --card: #ffffff;
+      --highlight: #f2d5f3;
     }
 
     body {
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(180deg, #f8fbfd, #e8f0ff);
-      color: #222;
-      overflow-x: hidden;
+      margin: 0;
+      font-family: "Inter", "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      scroll-behavior: smooth;
     }
 
-    /* --- HEADER --- */
+    /* Header with gradient & shapes */
     header {
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(30, 58, 138, 0.95);
+      background: linear-gradient(135deg, #5a4769, #a78b9f);
       color: white;
       text-align: center;
-      padding: 2rem 1rem;
-      transition: all 0.4s ease;
-      z-index: 10;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      padding: 1rem; /* keep padding constant */
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      z-index: 100;
+      overflow: hidden;
+      transition: background 0.3s ease, box-shadow 0.3s ease; /* no padding transition */
     }
 
     header.shrink {
-      padding: 0.8rem 1rem;
-      background: rgba(30, 58, 138, 0.98);
+      background: linear-gradient(135deg, #4e3b55, #8f6f8f);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+      /* padding stays same! */
     }
 
-    header h1 {
-      font-size: 2.4rem;
-      letter-spacing: 1px;
-      margin-bottom: 0.2rem;
-      animation: fadeDown 1s ease-out forwards;
+    /* Floating shapes */
+    .hero-shapes span {
+      position: absolute;
+      display: block;
+      border-radius: 50%;
+      opacity: 0.15;
+      animation: float 10s linear infinite;
+    }
+    .hero-shapes span:nth-child(1) { width: 80px; height: 80px; background: #ffffff; top: 10%; left: 5%; }
+    .hero-shapes span:nth-child(2) { width: 50px; height: 50px; background: #c1a6c1; top: 30%; left: 80%; animation-duration: 12s; }
+    .hero-shapes span:nth-child(3) { width: 120px; height: 120px; background: #ffffff; top: 70%; left: 50%; animation-duration: 15s; }
+
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+      100% { transform: translateY(0px) rotate(360deg); }
     }
 
-    header p {
-      font-size: 1.1rem;
-      opacity: 0.8;
-      animation: fadeDown 1.2s ease-out forwards;
+    #typed-text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 2.4rem;  /* fixed height, matches font-size */
+      margin: 0 auto;
+    }
+
+    #typed {
+      font-size: 2rem;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+      border-right: 3px solid white;
+      white-space: nowrap;
+      display: inline-block;
+      min-width: 1ch; /* prevents collapse when empty */
     }
 
     nav {
-      margin-top: 1rem;
-      animation: fadeDown 1.4s ease-out forwards;
+      margin-top: 0.5rem;
     }
 
     nav a {
-      color: #dbeafe;
+      color: #e0d6e6;
       text-decoration: none;
       margin: 0 1rem;
       font-weight: 500;
-      transition: color 0.2s;
-      position: relative;
+      transition: all 0.3s ease;
     }
 
-    nav a::after {
-      content: "";
-      position: absolute;
-      width: 0%;
-      height: 2px;
-      background: white;
-      bottom: -4px;
-      left: 0;
-      transition: width 0.3s;
+    nav a:hover {
+      color: white;
+      transform: scale(1.1);
     }
 
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    /* --- SECTIONS --- */
     section {
-      max-width: 1000px;
-      margin: 7rem auto;
-      padding: 0 1.5rem;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s ease-out;
-    }
-
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 6rem 1.5rem 3rem;
     }
 
     h2 {
-      border-bottom: 3px solid #1e3a8a;
+      border-bottom: 3px solid var(--accent);
       display: inline-block;
       padding-bottom: 0.3rem;
       margin-bottom: 1rem;
-      color: #1e3a8a;
+      color: var(--primary);
+      font-size: 1.5rem;
     }
 
-    /* --- ABOUT --- */
     .about {
-      background: white;
+      background: var(--card);
       padding: 1.5rem;
-      border-radius: 16px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-      animation: float 6s ease-in-out infinite;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      line-height: 1.7;
+      position: relative;
+      overflow: hidden;
     }
 
-    /* --- PROJECT CARDS --- */
     .projects {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 1.5rem;
       margin-top: 1rem;
     }
 
     .project-card {
-      background: white;
-      border-radius: 16px;
+      background: var(--card);
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
       text-decoration: none;
       color: inherit;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      transform-style: preserve-3d;
+      position: relative;
     }
 
     .project-card:hover {
-      transform: translateY(-6px) rotateX(5deg) rotateY(3deg);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
     }
 
     .project-card img {
       width: 100%;
-      height: 180px;
+      height: 150px;
       object-fit: cover;
-      transition: transform 0.6s ease;
+      border-bottom: 1px solid var(--accent);
+      transition: transform 0.3s ease;
     }
 
     .project-card:hover img {
@@ -158,22 +162,31 @@
 
     .project-card h3 {
       margin-top: 0;
-      color: #1e3a8a;
-      font-size: 1.2rem;
+      color: var(--accent);
+      font-size: 1.15rem;
     }
 
-    /* --- FOOTER --- */
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      margin: 2px 2px 0 0;
+      font-size: 0.7rem;
+      background: var(--highlight);
+      color: var(--primary);
+      border-radius: 6px;
+    }
+
     footer {
       text-align: center;
-      padding: 1.5rem;
-      background-color: #1e3a8a;
-      color: #dbeafe;
+      padding: 1rem;
+      background: var(--primary);
+      color: #e0d6e6;
       font-size: 0.9rem;
-      margin-top: 4rem;
+      margin-top: 2rem;
     }
 
     footer a {
-      color: #dbeafe;
+      color: #e0d6e6;
       text-decoration: underline;
     }
 
@@ -181,57 +194,27 @@
       color: white;
     }
 
-    /* --- ANIMATIONS --- */
-    @keyframes fadeDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .social-icons a {
+      margin: 0 0.5rem;
+      color: #e0d6e6;
+      font-size: 1.2rem;
+      transition: color 0.3s;
     }
+    .social-icons a:hover { color: white; }
 
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-5px);
-      }
-    }
-
-    /* --- TYPEWRITER EFFECT --- */
-    .typewriter {
-      overflow: hidden;
-      border-right: 3px solid #fff;
-      white-space: nowrap;
-      margin: 0 auto;
-      animation: typing 3s steps(30, end), blink 0.7s step-end infinite;
-      width: fit-content;
-    }
-
-    @keyframes typing {
-      from {
-        width: 0;
-      }
-      to {
-        width: 100%;
-      }
-    }
-
-    @keyframes blink {
-      50% {
-        border-color: transparent;
-      }
-    }
+    /* Animations */
+    [data-fade-left] { opacity: 0; transform: translateX(-30px); transition: all 0.8s ease; }
+    [data-fade-right] { opacity: 0; transform: translateX(30px); transition: all 0.8s ease; }
+    [data-fade-left].visible, [data-fade-right].visible { opacity: 1; transform: translateX(0); }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 </head>
 <body>
   <header id="header">
-    <h1 class="typewriter">Anjali Vanamala</h1>
-    <p>Software Engineering Student</p>
+    <div class="hero-shapes">
+      <span></span><span></span><span></span>
+    </div>
+    <h1 id="typed-text"><span id="typed">&nbsp;</span></h1>
     <nav>
       <a href="#about">About</a>
       <a href="#data-projects">Data Projects</a>
@@ -239,52 +222,59 @@
     </nav>
   </header>
 
-  <section id="about">
+  <section id="about" data-fade-left>
     <h2>About Me</h2>
     <div class="about">
       <p>
-        Hi! I'm <strong>Anjali Vanamala</strong>, a passionate software engineering student 
-        interested in building data-driven systems and developing clean, efficient software.
-        I enjoy exploring the intersection of data engineering, machine learning, and 
-        application development to solve real-world problems.
+        Hi! I'm <strong>Anjali Vanamala</strong>, a computer engineer passionate about
+        building meaningful, data-driven, and inclusive systems and applications.
+        I enjoy combining data, algorithms, and software to create impactful digital experiences.
       </p>
     </div>
   </section>
 
-  <section id="data-projects">
+  <section id="data-projects" data-fade-right>
     <h2>Data Engineering & Science Projects</h2>
     <div class="projects">
       <a href="#" class="project-card">
-        <img src="https://via.placeholder.com/400x200.png?text=FairGNN+Fairness+Model" alt="FairGNN Project">
+        <img src="https://via.placeholder.com/400x200.png?text=FairGNN+Fairness+Model" alt="FairGNN Project" />
         <div class="content">
           <h3>FairGNN Fairness Model</h3>
+          <span class="badge">PyTorch</span>
+          <span class="badge">DGL</span>
           <p>Exploring fairness in graph neural networks using the Pokec dataset.</p>
         </div>
       </a>
       <a href="#" class="project-card">
-        <img src="https://via.placeholder.com/400x200.png?text=Bayesian+GNN+Attack" alt="Bayesian GNN">
+        <img src="https://via.placeholder.com/400x200.png?text=Bayesian+GNN+Attack" alt="Bayesian GNN" />
         <div class="content">
           <h3>Bayesian GNN Poisoning Attack</h3>
+          <span class="badge">GNN</span>
+          <span class="badge">Fairness</span>
           <p>Designed fairness-aware poisoning attacks with uncertainty estimation.</p>
         </div>
       </a>
     </div>
   </section>
 
-  <section id="software-projects">
+  <section id="software-projects" data-fade-left>
     <h2>Software Engineering Projects</h2>
     <div class="projects">
       <a href="#" class="project-card">
-        <img src="https://via.placeholder.com/400x200.png?text=Music+Notation+Editor" alt="Music Editor">
+        <img src="https://via.placeholder.com/400x200.png?text=Music+Notation+Editor" alt="Music Editor" />
         <div class="content">
           <h3>Music Notation Editor</h3>
+          <span class="badge">Vue</span>
+          <span class="badge">VexFlow</span>
           <p>Interactive web app using VexFlow and Vue for creating musical compositions.</p>
         </div>
       </a>
       <a href="#" class="project-card">
-        <img src="https://via.placeholder.com/400x200.png?text=OCR+Pipeline" alt="OCR Pipeline">
+        <img src="https://via.placeholder.com/400x200.png?text=OCR+Pipeline" alt="OCR Pipeline" />
         <div class="content">
           <h3>OCR Pipeline</h3>
+          <span class="badge">CRNN</span>
+          <span class="badge">Python</span>
           <p>Built an OCR pipeline using CRNN for text extraction from images.</p>
         </div>
       </a>
@@ -292,30 +282,68 @@
   </section>
 
   <footer>
-    <p>© 2025 Anjali Vanamala | <a href="https://github.com/anjalivanamala">GitHub</a></p>
+    <p>© 2025 Anjali Vanamala</p>
+    <div class="social-icons">
+      <a href="https://github.com/anjalivanamala"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
   </footer>
 
   <script>
-    // Shrinking header
     const header = document.getElementById("header");
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 60) header.classList.add("shrink");
-      else header.classList.remove("shrink");
+      // shrink only if page scrolled down
+      if (window.scrollY > 50) {
+        header.classList.add("shrink");
+      } else {
+        header.classList.remove("shrink");
+      }
     });
 
-    // Fade-in sections on scroll
-    const sections = document.querySelectorAll("section");
+    const texts = ["Anjali Vanamala", "Data Engineer", "Software Developer"];
+    const typed = document.getElementById("typed");
+    let tIndex = 0, charIndex = 0;
+
+    function type() {
+      if (charIndex < texts[tIndex].length) {
+        typed.textContent = texts[tIndex].substring(0, charIndex + 1);
+        charIndex++;
+        setTimeout(type, 120);
+      } else {
+        setTimeout(erase, 1200);
+      }
+    }
+
+    function erase() {
+      if (charIndex > 0) {
+        typed.textContent = texts[tIndex].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(erase, 60);
+      } else {
+        tIndex = (tIndex + 1) % texts.length;
+        setTimeout(type, 300);
+      }
+    }
+
+    type();
+
+    setInterval(() => {
+      typed.style.borderRightColor = typed.style.borderRightColor === "transparent" ? "white" : "transparent";
+    }, 600);
+
+
+
     const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("visible");
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     );
-    sections.forEach(section => observer.observe(section));
+
+    document.querySelectorAll("[data-fade-left],[data-fade-right]").forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
